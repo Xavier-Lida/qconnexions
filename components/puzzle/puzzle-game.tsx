@@ -29,9 +29,9 @@ const GROUP_ROW_CLASS: Record<GroupColor, string> = {
   gold: "bg-group-gold text-group-gold-fg",
 };
 
-/** Même hauteur minimale que les tuiles du puzzle. */
+/** Même hauteur minimale que les tuiles du puzzle (mobile un peu plus bas pour le 4×4). */
 const TILE_BOX_MIN =
-  "min-h-[4.25rem] sm:min-h-[5rem]";
+  "min-h-[3.5rem] sm:min-h-[4.25rem] md:min-h-[5rem]";
 
 type SubmitPhase = "idle" | "bouncing" | "shaking";
 
@@ -157,7 +157,7 @@ export function PuzzleGame({ puzzle, shuffleSeed }: PuzzleGameProps) {
             <div
               key={cat.label}
               className={cn(
-                "flex flex-col items-center justify-center gap-1 rounded-2xl px-3 text-center text-base font-extrabold uppercase leading-tight tracking-tight sm:px-4",
+                "flex flex-col items-center justify-center gap-1 rounded-2xl px-2 text-center text-xs font-extrabold uppercase leading-tight tracking-tight sm:px-4 sm:text-base",
                 TILE_BOX_MIN,
                 GROUP_ROW_CLASS[cat.color],
                 cat.label === solvedRevealLabel && "cq-solved-reveal"
@@ -166,11 +166,13 @@ export function PuzzleGame({ puzzle, shuffleSeed }: PuzzleGameProps) {
               <p className="max-w-full text-[0.65rem] font-bold uppercase leading-snug opacity-90 sm:text-xs">
                 {cat.label}
               </p>
-              <p className="text-balance font-extrabold">{cat.words.join(" · ")}</p>
+              <p className="text-balance text-[0.7rem] font-extrabold leading-snug sm:text-sm md:text-base">
+                {cat.words.join(" · ")}
+              </p>
             </div>
           ))}
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="grid grid-cols-4 gap-2 sm:gap-3">
             {gridOrder.map((word) => {
               const isOn = selected.includes(word);
               const showBounce = submitPhase === "bouncing" && isOn;
@@ -191,7 +193,7 @@ export function PuzzleGame({ puzzle, shuffleSeed }: PuzzleGameProps) {
                       : undefined
                   }
                   className={cn(
-                    "h-auto whitespace-normal px-2 py-4 text-center text-base font-extrabold uppercase leading-tight tracking-tight transition-colors duration-200 ease-out sm:text-lg",
+                    "h-auto min-w-0 w-full whitespace-normal px-1.5 py-3 text-center text-xs font-extrabold uppercase leading-snug tracking-tight transition-colors duration-200 ease-out sm:px-2 sm:py-4 sm:text-base sm:leading-tight lg:text-lg",
                     TILE_BOX_MIN,
                     isOn &&
                       "border-border bg-prussian text-background hover:border-border hover:bg-prussian hover:text-background active:border-border active:bg-prussian",
