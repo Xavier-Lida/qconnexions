@@ -1,19 +1,14 @@
 import Link from "next/link";
 
-import { PuzzleGame } from "@/components/puzzle/puzzle-game";
+import { SignupForm } from "@/components/auth/signup-form";
 import { Button } from "@/components/ui/button";
 
-function formatTodayFr(): string {
-  return new Intl.DateTimeFormat("fr-CA", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    timeZone: "America/Montreal",
-  }).format(new Date());
-}
+export const metadata = {
+  title: "Inscription | Connexions Québec",
+  description: "Crée un compte Connexions Québec.",
+};
 
-export default function Home() {
+export default function InscriptionPage() {
   return (
     <div className="flex min-h-full flex-1 flex-col bg-background">
       <header className="border-b border-border bg-card/80 backdrop-blur-sm">
@@ -23,20 +18,20 @@ export default function Home() {
               Connexions Québec
             </p>
             <h1 className="font-heading text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
-              Puzzle du jour
+              Créer un compte
             </h1>
-            <p className="text-sm capitalize text-muted-foreground">{formatTodayFr()}</p>
+            <p className="text-sm text-muted-foreground">
+              Inscris-toi pour jouer avec un compte (fonctions à venir).
+            </p>
           </div>
           <Button variant="outline" size="sm" className="shrink-0 self-start sm:self-center" asChild>
-            <Link href="/connexion">Se connecter</Link>
+            <Link href="/">Retour au puzzle</Link>
           </Button>
         </div>
       </header>
 
-      <main className="mx-auto flex min-h-0 w-full max-w-5xl flex-1 flex-col px-4 py-6 xl:max-w-6xl">
-        <div className="flex min-h-0 flex-1 flex-col">
-          <PuzzleGame />
-        </div>
+      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-4 py-10 xl:max-w-6xl">
+        <SignupForm />
       </main>
     </div>
   );
