@@ -64,6 +64,7 @@ export async function createDailyPuzzle(
   }
 
   revalidatePath("/admin");
+  revalidatePath("/");
   return { ok: true };
 }
 
@@ -126,6 +127,7 @@ export async function updateDailyPuzzle(
   }
 
   revalidatePath("/admin");
+  revalidatePath("/");
   return { ok: true };
 }
 
@@ -161,5 +163,6 @@ export async function deleteDailyPuzzle(id: string): Promise<PuzzleActionResult>
   }
 
   revalidatePath("/admin");
+  revalidatePath("/");
   return { ok: true };
 }

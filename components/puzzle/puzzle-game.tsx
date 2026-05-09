@@ -12,8 +12,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  DEMO_PUZZLE,
   flattenWords,
+  type DemoPuzzle,
   type GroupColor,
   type PuzzleCategory,
   sameSet,
@@ -50,15 +50,19 @@ function isOneAway(selected: string[], remaining: readonly PuzzleCategory[]): bo
   });
 }
 
-const DEMO_SEED = 2026_05_09;
 /** Rebond en cascade selon l’ordre de sélection (`.cq-tile-bounce` 0.36s par tuile). */
 const BOUNCE_CASCADE_MS = 72;
 const BOUNCE_TOTAL_MS = BOUNCE_CASCADE_MS * 3 + 360;
 const SHAKE_TOTAL_MS = 520;
 
-export function PuzzleGame() {
+export type PuzzleGameProps = {
+  puzzle: DemoPuzzle;
+  shuffleSeed: number;
+};
+
+export function PuzzleGame({ puzzle, shuffleSeed }: PuzzleGameProps) {
   const [gridOrder, setGridOrder] = useState<string[]>(() =>
-    shuffleWordsSeeded(flattenWords(DEMO_PUZZLE), DEMO_SEED)
+    shuffleWordsSeeded(flattenWords(puzzle), shuffleSeed)
   );
   const [solved, setSolved] = useState<PuzzleCategory[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
@@ -68,10 +72,10 @@ export function PuzzleGame() {
 
   const remainingCategories = useMemo(() => {
     const solvedLabels = new Set(solved.map((c) => c.label));
-    return DEMO_PUZZLE.categories.filter((c) => !solvedLabels.has(c.label));
-  }, [solved]);
+    return puzzle.categories.filter((c) => !solvedLabels.has(c.label));
+  }, [solved, puzzle.categories]);
 
-  const won = solved.length === DEMO_PUZZLE.categories.length;
+  const won = solved.length === puzzle.categories.length;
   const lost = mistakesLeft <= 0 && !won;
   const busy = submitPhase !== "idle";
   const frozen = won || lost || busy;

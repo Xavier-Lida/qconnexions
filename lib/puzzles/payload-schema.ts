@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import type { GroupColor, PuzzleCategory } from "@/lib/puzzles/demo";
+import type { DemoPuzzle, GroupColor, PuzzleCategory } from "@/lib/puzzles/demo";
 
 const groupColorSchema = z.enum(["navy", "sky", "white", "gold"] satisfies readonly GroupColor[]);
 
@@ -57,4 +57,11 @@ export function parsePlayDateString(s: string): { ok: true; value: string } | { 
     return { ok: false };
   }
   return { ok: true, value: t };
+}
+
+export function puzzlePayloadToDemoPuzzle(rowId: string, payload: PuzzlePayloadParsed): DemoPuzzle {
+  return {
+    id: rowId,
+    categories: payload as unknown as readonly PuzzleCategory[],
+  };
 }

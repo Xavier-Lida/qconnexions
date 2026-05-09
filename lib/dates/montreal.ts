@@ -35,3 +35,12 @@ export function isCalendarDateOnOrAfterTodayMontreal(playDate: string, today: st
 export function isCalendarDateBeforeTodayMontreal(playDate: string, today: string): boolean {
   return calendarDateCompare(playDate, today) < 0;
 }
+
+/** Entier déterministe pour le mélange initial (ex. `2026-05-09` → `20260509`). */
+export function shuffleSeedFromCalendarDate(iso: string): number {
+  const [y, m, d] = iso.split("-").map((p) => Number.parseInt(p, 10));
+  if (!Number.isFinite(y) || !Number.isFinite(m) || !Number.isFinite(d)) {
+    throw new Error(`shuffleSeedFromCalendarDate: invalid iso ${iso}`);
+  }
+  return y * 10_000 + m * 100 + d;
+}
