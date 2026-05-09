@@ -1,26 +1,221 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --color-group-navy: var(--group-navy);
+  --color-group-navy-fg: var(--group-navy-fg);
+  --color-group-sky: var(--group-sky);
+  --color-group-sky-fg: var(--group-sky-fg);
+  --color-group-white: var(--group-white);
+  --color-group-white-fg: var(--group-white-fg);
+  --color-group-gold: var(--group-gold);
+  --color-group-gold-fg: var(--group-gold-fg);
+  --color-success: var(--success);
+  --color-prussian: var(--prussian);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* Connexions Québec — DESIGN.md */
+  --background: #fcf7f8;
+  --foreground: #091540;
+  --card: #ffffff;
+  --card-foreground: #091540;
+  --popover: #ffffff;
+  --popover-foreground: #091540;
+  --primary: #f7b32b;
+  --primary-foreground: #091540;
+  --secondary: #f4f2f5;
+  --secondary-foreground: #091540;
+  --muted: #e4eaf5;
+  --muted-foreground: #5c6b8a;
+  --accent: #cfe8fc;
+  --accent-foreground: #091540;
+  --destructive: #c41e3a;
+  --border: #e4e8f0;
+  --input: #e4e8f0;
+  --ring: #2191fb;
+  --success: #1a7f5c;
+  --prussian: #001d4a;
+  --chart-1: #f7d95c;
+  --chart-2: #7bc96f;
+  --chart-3: #8eb4e6;
+  --chart-4: #b794f4;
+  --chart-5: #091540;
+  --radius: 0.5rem;
+  --sidebar: #fcf7f8;
+  --sidebar-foreground: #091540;
+  --sidebar-primary: #f7b32b;
+  --sidebar-primary-foreground: #091540;
+  --sidebar-accent: #e4eaf5;
+  --sidebar-accent-foreground: #091540;
+  --sidebar-border: #e4e8f0;
+  --sidebar-ring: #2191fb;
+  /* Couleurs de groupes puzzle */
+  --group-navy: #091540;
+  --group-navy-fg: #fcf7f8;
+  --group-sky: #7ec8fa;
+  --group-sky-fg: #091540;
+  --group-white: #ffffff;
+  --group-white-fg: #091540;
+  --group-gold: #f7b32b;
+  --group-gold-fg: #091540;
+}
+
+.dark {
+  --background: #001d4a;
+  --foreground: #fcf7f8;
+  --card: #091540;
+  --card-foreground: #fcf7f8;
+  --popover: #091540;
+  --popover-foreground: #fcf7f8;
+  --primary: #f7b32b;
+  --primary-foreground: #091540;
+  --secondary: #132a5c;
+  --secondary-foreground: #fcf7f8;
+  --muted: #132a5c;
+  --muted-foreground: #a8b4d4;
+  --accent: #2191fb33;
+  --accent-foreground: #fcf7f8;
+  --destructive: #e85d75;
+  --border: #ffffff26;
+  --input: #ffffff26;
+  --ring: #2191fb;
+  --success: #5ecf9a;
+  --prussian: #001d4a;
+  --chart-1: #f9df6d;
+  --chart-2: #7bc96f;
+  --chart-3: #8eb4e6;
+  --chart-4: #c59df7;
+  --chart-5: #fcf7f8;
+  --sidebar: #091540;
+  --sidebar-foreground: #fcf7f8;
+  --sidebar-primary: #f7b32b;
+  --sidebar-primary-foreground: #091540;
+  --sidebar-accent: #132a5c;
+  --sidebar-accent-foreground: #fcf7f8;
+  --sidebar-border: #ffffff26;
+  --sidebar-ring: #2191fb;
+  --group-navy: #091540;
+  --group-navy-fg: #fcf7f8;
+  --group-sky: #5eb8f5;
+  --group-sky-fg: #091540;
+  --group-white: #f0f4fa;
+  --group-white-fg: #091540;
+  --group-gold: #f7b32b;
+  --group-gold-fg: #091540;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/** Rebond identique pour chaque tuile (soumission). */
+@keyframes cq-puzzle-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  70% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes cq-solved-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cq-puzzle-shake {
+  0%,
+  100% {
+    transform: rotateZ(0deg);
+  }
+  18% {
+    transform: rotateZ(-5deg);
+  }
+  36% {
+    transform: rotateZ(4deg);
+  }
+  54% {
+    transform: rotateZ(-4deg);
+  }
+  72% {
+    transform: rotateZ(3deg);
+  }
+  90% {
+    transform: rotateZ(-1deg);
+  }
+}
+
+.cq-tile-bounce {
+  animation: cq-puzzle-bounce 0.36s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+.cq-solved-reveal {
+  animation: cq-solved-reveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.cq-tile-shake {
+  animation: cq-puzzle-shake 0.52s ease-in-out both;
 }
