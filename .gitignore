@@ -37,6 +37,9 @@ yarn-error.log*
 .vercel
 PLAN.MD
 
+# SQL
+20260509120000_daily_puzzles.sql
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

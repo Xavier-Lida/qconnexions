@@ -21,3 +21,15 @@ export function getSupabaseAnonKey(): string {
   }
   return key;
 }
+
+/** Clé service role — jamais exposée au client (pas de préfixe NEXT_PUBLIC_). */
+export function getSupabaseServiceRoleKey(): string {
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+  if (!key) {
+    throw new Error(
+      "Variable SUPABASE_SERVICE_ROLE_KEY manquante ou vide dans .env.local. " +
+        "Dans le tableau Supabase : Project Settings → API → copier la clé secrète « service_role », puis coller la valeur (sans guillemets)."
+    );
+  }
+  return key;
+}

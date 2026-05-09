@@ -1,7 +1,5 @@
-import Link from "next/link";
-
 import { PuzzleGame } from "@/components/puzzle/puzzle-game";
-import { Button } from "@/components/ui/button";
+import { SiteHeader } from "@/components/site-header";
 
 function formatTodayFr(): string {
   return new Intl.DateTimeFormat("fr-CA", {
@@ -16,22 +14,10 @@ function formatTodayFr(): string {
 export default function Home() {
   return (
     <div className="flex min-h-full flex-1 flex-col bg-background">
-      <header className="border-b border-border bg-card/80 backdrop-blur-sm">
-        <div className="mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-6 sm:flex-row sm:items-center sm:justify-between xl:max-w-6xl">
-          <div className="flex flex-col gap-1">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Connexions Québec
-            </p>
-            <h1 className="font-heading text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
-              Puzzle du jour
-            </h1>
-            <p className="text-sm capitalize text-muted-foreground">{formatTodayFr()}</p>
-          </div>
-          <Button variant="outline" size="sm" className="shrink-0 self-start sm:self-center" asChild>
-            <Link href="/connexion">Se connecter</Link>
-          </Button>
-        </div>
-      </header>
+      <SiteHeader
+        title="Puzzle du jour"
+        description={<p className="capitalize">{formatTodayFr()}</p>}
+      />
 
       <main className="mx-auto flex min-h-0 w-full max-w-5xl flex-1 flex-col px-4 py-6 xl:max-w-6xl">
         <div className="flex min-h-0 flex-1 flex-col">
